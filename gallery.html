@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery | 紅蝶 KŌCHŌ</title>
+<meta name="description" content="ファッションをテーマにしたイラストと漫画のギャラリー。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">
+    <span>紅蝶</span>
+    <span class="brand-en">Kōchō</span>
+  </a>
+  <nav class="main-nav">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Journal</a>
+    <a href="gallery.html" class="is-active">Gallery</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<main>
+  <div class="page-hero">
+    <p class="hero-eyebrow">Gallery</p>
+    <h1>作品ギャラリー</h1>
+    <p class="lede">ファッションをテーマにしたイラストと漫画。クリックすると大きく表示されます。</p>
+  </div>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn is-active" data-filter="all">すべて</button>
+    <button class="filter-btn" data-filter="illustration">イラスト</button>
+    <button class="filter-btn" data-filter="manga">漫画</button>
+    <button class="filter-btn" data-filter="sketch">ラフスケッチ</button>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- placeholder tiles — replace background tile with <img> when real artwork is ready -->
+  </div>
+</main>
+
+<!-- Lightbox popup -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lbClose" aria-label="閉じる">&times;</button>
+    <div class="lightbox-image" id="lbImage"></div>
+    <div class="lightbox-caption">
+      <p class="lc-title" id="lbTitle"></p>
+      <p class="lc-meta" id="lbMeta"></p>
+    </div>
+  </div>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="前へ">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="次へ">&#8250;</button>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand" style="font-size:16px; margin-bottom:8px;">
+        <span>紅蝶</span><span class="brand-en">Kōchō</span>
+      </div>
+      <p style="margin:0;">Fashion Study Journal</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Journal</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+  <div class="footer-inner">
+    <p class="footer-note">
+      本サイトのテキスト・イラスト・漫画等のコンテンツは、AIモデルの学習データとしての使用を禁じます。
+      No content on this site may be used to train AI models without explicit permission.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Placeholder artwork data — swap tile.color1/color2 for real <img src> later.
+  const items = [
+    { title: "Look 01",  meta: "Illustration · 2026.06", category: "illustration", ar: "3/4",  c1: "#EFC9D2", c2: "#A9CFDA" },
+    { title: "駆ける",     meta: "Manga · 2026.06",        category: "manga",        ar: "4/5",  c1: "#D98B9B", c2: "#CDE6ED" },
+    { title: "Sketch 03", meta: "Rough Sketch · 2026.05",  category: "sketch",       ar: "1/1",  c1: "#F4E9E4", c2: "#D98B9B" },
+    { title: "Look 02",  meta: "Illustration · 2026.05",  category: "illustration", ar: "2/3",  c1: "#A9CFDA", c2: "#EFC9D2" },
+    { title: "境界",       meta: "Manga · 2026.05",        category: "manga",        ar: "3/4",  c1: "#9C4A5C", c2: "#A9CFDA" },
+    { title: "Sketch 04", meta: "Rough Sketch · 2026.04",  category: "sketch",       ar: "4/3",  c1: "#EFC9D2", c2: "#F4E9E4" },
+    { title: "Look 03",  meta: "Illustration · 2026.04",  category: "illustration", ar: "3/4",  c1: "#6FA3B4", c2: "#D98B9B" },
+    { title: "羽化",       meta: "Manga · 2026.03",        category: "manga",        ar: "4/5",  c1: "#D98B9B", c2: "#6FA3B4" },
+    { title: "Sketch 05", meta: "Rough Sketch · 2026.03",  category: "sketch",       ar: "1/1",  c1: "#A9CFDA", c2: "#9C4A5C" },
+    { title: "Look 04",  meta: "Illustration · 2026.02",  category: "illustration", ar: "2/3",  c1: "#F4E9E4", c2: "#6FA3B4" },
+  ];
+
+  const grid = document.getElementById('galleryGrid');
+  let visibleIndices = [];
+
+  items.forEach((item, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'gallery-item';
+    btn.dataset.category = item.category;
+    btn.dataset.index = i;
+    btn.innerHTML = `
+      <span class="tile" style="--ar:${item.ar}; --c1:${item.c1}; --c2:${item.c2};"></span>
+      <span class="cap">${item.title}</span>
+    `;
+    btn.addEventListener('click', () => openLightbox(i));
+    grid.appendChild(btn);
+  });
+
+  // Filtering
+  const filterBar = document.getElementById('filterBar');
+  filterBar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    const filter = btn.dataset.filter;
+    grid.querySelectorAll('.gallery-item').forEach(el => {
+      const match = filter === 'all' || el.dataset.category === filter;
+      el.style.display = match ? '' : 'none';
+    });
+  });
+
+  // Lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImage = document.getElementById('lbImage');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbMeta = document.getElementById('lbMeta');
+  let currentIndex = 0;
+
+  function currentVisible() {
+    return Array.from(grid.querySelectorAll('.gallery-item'))
+      .filter(el => el.style.display !== 'none')
+      .map(el => parseInt(el.dataset.index, 10));
+  }
+
+  function openLightbox(index) {
+    visibleIndices = currentVisible();
+    currentIndex = visibleIndices.indexOf(index);
+    if (currentIndex === -1) currentIndex = 0;
+    renderLightbox();
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function renderLightbox() {
+    const item = items[visibleIndices[currentIndex]];
+    lbImage.style.setProperty('--ar', item.ar);
+    lbImage.style.setProperty('--c1', item.c1);
+    lbImage.style.setProperty('--c2', item.c2);
+    lbTitle.textContent = item.title;
+    lbMeta.textContent = item.meta;
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  function step(delta) {
+    if (!visibleIndices.length) return;
+    currentIndex = (currentIndex + delta + visibleIndices.length) % visibleIndices.length;
+    renderLightbox();
+  }
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => step(-1));
+  document.getElementById('lbNext').addEventListener('click', () => step(1));
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+</script>
+
+</body>
+</html>
