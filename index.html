@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紅蝶 KŌCHŌ | Fashion Study Journal</title>
+<meta name="description" content="装いを学び、記録するファッション研究ノート。スタイル日記、イラストギャラリー、探究の記録。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="brand">
+    <span>紅蝶</span>
+    <span class="brand-en">Kōchō</span>
+  </a>
+  <nav class="main-nav">
+    <a href="index.html" class="is-active">Home</a>
+    <a href="blog.html">Journal</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div>
+      <p class="hero-eyebrow">Fashion Study Journal</p>
+      <h1>装いを、<br>ひと針ずつ<em>学ぶ。</em></h1>
+      <p class="lede">
+        森英恵のドレスに宿る蝶のように、装うことは境界を越える。
+        ここは布と色と歴史をめぐる、個人的な研究ノート。
+        学びの過程をそのまま記録していきます。
+      </p>
+      <div class="hero-actions">
+        <a href="blog.html" class="btn btn-primary">日々の記録を読む</a>
+        <a href="gallery.html" class="btn btn-outline">ギャラリーを見る</a>
+      </div>
+    </div>
+
+    <div class="butterfly-stage" aria-hidden="true">
+      <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="wingPink" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#EFC9D2"/>
+            <stop offset="100%" stop-color="#D98B9B"/>
+          </linearGradient>
+          <linearGradient id="wingSky" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#CDE6ED"/>
+            <stop offset="100%" stop-color="#A9CFDA"/>
+          </linearGradient>
+        </defs>
+
+        <!-- left wing (rose) -->
+        <g class="wing wing-left">
+          <path d="M100 110 C 60 60, 10 55, 8 95 C 6 130, 55 145, 100 118 Z" fill="url(#wingPink)" stroke="#9C4A5C" stroke-width="1.1"/>
+          <path d="M100 128 C 68 118, 30 130, 28 158 C 26 182, 62 188, 100 140 Z" fill="url(#wingPink)" stroke="#9C4A5C" stroke-width="1"/>
+        </g>
+
+        <!-- right wing (sky) -->
+        <g class="wing wing-right">
+          <path d="M100 110 C 140 60, 190 55, 192 95 C 194 130, 145 145, 100 118 Z" fill="url(#wingSky)" stroke="#6FA3B4" stroke-width="1.1"/>
+          <path d="M100 128 C 132 118, 170 130, 172 158 C 174 182, 138 188, 100 140 Z" fill="url(#wingSky)" stroke="#6FA3B4" stroke-width="1"/>
+        </g>
+
+        <!-- stitched thread trailing from the body, a couture signature -->
+        <path class="thread-line" d="M100 118 C 96 150, 108 175, 96 205" fill="none" stroke="#9C4A5C" stroke-width="1" opacity="0.6"/>
+
+        <!-- body -->
+        <line x1="100" y1="100" x2="100" y2="135" stroke="#3A2B2E" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="100" cy="98" r="4" fill="#3A2B2E"/>
+        <path d="M100 98 C 94 88, 88 84, 84 78" fill="none" stroke="#3A2B2E" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M100 98 C 106 88, 112 84, 116 78" fill="none" stroke="#3A2B2E" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <section class="pillars">
+    <div class="pillar">
+      <span class="pillar-mark">01 — Journal</span>
+      <h3>勉強の記録</h3>
+      <p>日付と一言だけの、飾らない学習ログ。素材、シルエット、歴史について気づいたことを積み重ねていきます。</p>
+      <a href="blog.html" class="pillar-link">Journal を読む</a>
+    </div>
+    <div class="pillar">
+      <span class="pillar-mark">02 — Gallery</span>
+      <h3>作品ギャラリー</h3>
+      <p>ファッションをテーマにしたイラストや漫画。スタイル画から物語のワンシーンまで。</p>
+      <a href="gallery.html" class="pillar-link">Gallery を見る</a>
+    </div>
+    <div class="pillar">
+      <span class="pillar-mark">03 — About</span>
+      <h3>このサイトについて</h3>
+      <p>紅蝶というテーマと、なぜファッションを学び続けるのかについて。</p>
+      <a href="about.html" class="pillar-link">About を読む</a>
+    </div>
+  </section>
+
+  <section class="latest">
+    <p class="section-label">Latest in the Journal</p>
+    <div class="entry-list">
+      <!-- placeholder entries — replace with real journal content -->
+      <div class="entry-row">
+        <div class="entry-date">2026.07.01</div>
+        <div class="entry-text"><p>今日はドレープの取り方を練習。布の落ち方が思っていたより難しい。</p></div>
+      </div>
+      <div class="entry-row">
+        <div class="entry-date">2026.06.24</div>
+        <div class="entry-text"><p>1970年代のシルエットについて調べる。肩のラインの変化が面白い。</p></div>
+      </div>
+      <div class="entry-row">
+        <div class="entry-date">2026.06.18</div>
+        <div class="entry-text"><p>配色の練習。ピンクと水色の組み合わせが思ったより難しくて奥深い。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery-preview-section">
+    <p class="section-label">From the Gallery</p>
+    <div class="gallery-preview">
+      <!-- placeholder tiles — replace with real artwork -->
+      <figure><span>Look 01</span></figure>
+      <figure><span>Look 02</span></figure>
+      <figure><span>Look 03</span></figure>
+      <figure><span>Look 04</span></figure>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="brand" style="font-size:16px; margin-bottom:8px;">
+        <span>紅蝶</span><span class="brand-en">Kōchō</span>
+      </div>
+      <p style="margin:0;">Fashion Study Journal</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="index.html">Home</a>
+      <a href="blog.html">Journal</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="about.html">About</a>
+    </nav>
+  </div>
+  <div class="footer-inner">
+    <p class="footer-note">
+      本サイトのテキスト・イラスト・漫画等のコンテンツは、AIモデルの学習データとしての使用を禁じます。
+      No content on this site may be used to train AI models without explicit permission.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
