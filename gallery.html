@@ -29,7 +29,7 @@
   <div class="page-hero">
     <p class="hero-eyebrow">Gallery</p>
     <h1>作品ギャラリー</h1>
-    <p class="lede">ファッションをテーマにしたイラストと漫画。クリックすると大きく表示されます。</p>
+    <p class="lede">ファッションをテーマにしたイラストと漫画。画像をクリックすると大きく表示されます。</p>
   </div>
 
   <div class="filter-bar" id="filterBar">
@@ -40,22 +40,89 @@
   </div>
 
   <div class="gallery-grid" id="galleryGrid">
-    <!-- placeholder tiles — replace background tile with <img> when real artwork is ready -->
+
+    <!-- 画像を差し替えるときは img の src と alt、caption の文章だけ書き換えてください -->
+
+    <div class="item" data-category="illustration" data-caption="Look 01 — 春のコレクションから">
+      <div class="item-img">
+        <img src="gallery/look-01.jpg" alt="Look 01">
+      </div>
+      <div class="caption">Look 01 — 春のコレクションから</div>
+    </div>
+
+    <div class="item" data-category="manga" data-caption="駆ける — ワンシーン">
+      <div class="item-img">
+        <img src="gallery/manga-01.jpg" alt="駆ける">
+      </div>
+      <div class="caption">駆ける — ワンシーン</div>
+    </div>
+
+    <div class="item" data-category="sketch" data-caption="ラフ — ドレープの練習">
+      <div class="item-img">
+        <img src="gallery/sketch-01.jpg" alt="ラフスケッチ">
+      </div>
+      <div class="caption">ラフ — ドレープの練習</div>
+    </div>
+
+    <div class="item" data-category="illustration" data-caption="Look 02 — 水色のコートを合わせて">
+      <div class="item-img">
+        <img src="gallery/look-02.jpg" alt="Look 02">
+      </div>
+      <div class="caption">Look 02 — 水色のコートを合わせて</div>
+    </div>
+
+    <div class="item" data-category="manga" data-caption="境界 — 扉絵">
+      <div class="item-img">
+        <img src="gallery/manga-02.jpg" alt="境界">
+      </div>
+      <div class="caption">境界 — 扉絵</div>
+    </div>
+
+    <div class="item" data-category="sketch" data-caption="ラフ — プリーツの構造">
+      <div class="item-img">
+        <img src="gallery/sketch-02.jpg" alt="ラフスケッチ">
+      </div>
+      <div class="caption">ラフ — プリーツの構造</div>
+    </div>
+
+    <div class="item" data-category="illustration" data-caption="Look 03 — 蝶の刺繍をあしらって">
+      <div class="item-img">
+        <img src="gallery/look-03.jpg" alt="Look 03">
+      </div>
+      <div class="caption">Look 03 — 蝶の刺繍をあしらって</div>
+    </div>
+
+    <div class="item" data-category="manga" data-caption="羽化 — 最終ページ">
+      <div class="item-img">
+        <img src="gallery/manga-03.jpg" alt="羽化">
+      </div>
+      <div class="caption">羽化 — 最終ページ</div>
+    </div>
+
+    <div class="item" data-category="sketch" data-caption="ラフ — 配色の試作">
+      <div class="item-img">
+        <img src="gallery/sketch-03.jpg" alt="ラフスケッチ">
+      </div>
+      <div class="caption">ラフ — 配色の試作</div>
+    </div>
+
   </div>
 </main>
 
 <!-- Lightbox popup -->
-<div class="lightbox" id="lightbox">
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="作品の拡大表示">
   <div class="lightbox-inner">
     <button class="lightbox-close" id="lbClose" aria-label="閉じる">&times;</button>
-    <div class="lightbox-image" id="lbImage"></div>
+    <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="前へ">&#8249;</button>
+    <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="次へ">&#8250;</button>
+    <div class="lightbox-img-wrap">
+      <img id="lbImg" src="" alt="">
+    </div>
     <div class="lightbox-caption">
-      <p class="lc-title" id="lbTitle"></p>
-      <p class="lc-meta" id="lbMeta"></p>
+      <span class="lc-text" id="lbCaption"></span>
+      <span class="lc-counter" id="lbCounter"></span>
     </div>
   </div>
-  <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="前へ">&#8249;</button>
-  <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="次へ">&#8250;</button>
 </div>
 
 <footer class="site-footer">
@@ -82,79 +149,40 @@
 </footer>
 
 <script>
-  // Placeholder artwork data — swap tile.color1/color2 for real <img src> later.
-  const items = [
-    { title: "Look 01",  meta: "Illustration · 2026.06", category: "illustration", ar: "3/4",  c1: "#EFC9D2", c2: "#A9CFDA" },
-    { title: "駆ける",     meta: "Manga · 2026.06",        category: "manga",        ar: "4/5",  c1: "#D98B9B", c2: "#CDE6ED" },
-    { title: "Sketch 03", meta: "Rough Sketch · 2026.05",  category: "sketch",       ar: "1/1",  c1: "#F4E9E4", c2: "#D98B9B" },
-    { title: "Look 02",  meta: "Illustration · 2026.05",  category: "illustration", ar: "2/3",  c1: "#A9CFDA", c2: "#EFC9D2" },
-    { title: "境界",       meta: "Manga · 2026.05",        category: "manga",        ar: "3/4",  c1: "#9C4A5C", c2: "#A9CFDA" },
-    { title: "Sketch 04", meta: "Rough Sketch · 2026.04",  category: "sketch",       ar: "4/3",  c1: "#EFC9D2", c2: "#F4E9E4" },
-    { title: "Look 03",  meta: "Illustration · 2026.04",  category: "illustration", ar: "3/4",  c1: "#6FA3B4", c2: "#D98B9B" },
-    { title: "羽化",       meta: "Manga · 2026.03",        category: "manga",        ar: "4/5",  c1: "#D98B9B", c2: "#6FA3B4" },
-    { title: "Sketch 05", meta: "Rough Sketch · 2026.03",  category: "sketch",       ar: "1/1",  c1: "#A9CFDA", c2: "#9C4A5C" },
-    { title: "Look 04",  meta: "Illustration · 2026.02",  category: "illustration", ar: "2/3",  c1: "#F4E9E4", c2: "#6FA3B4" },
-  ];
-
   const grid = document.getElementById('galleryGrid');
-  let visibleIndices = [];
-
-  items.forEach((item, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'gallery-item';
-    btn.dataset.category = item.category;
-    btn.dataset.index = i;
-    btn.innerHTML = `
-      <span class="tile" style="--ar:${item.ar}; --c1:${item.c1}; --c2:${item.c2};"></span>
-      <span class="cap">${item.title}</span>
-    `;
-    btn.addEventListener('click', () => openLightbox(i));
-    grid.appendChild(btn);
-  });
-
-  // Filtering
   const filterBar = document.getElementById('filterBar');
-  filterBar.addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter-btn');
-    if (!btn) return;
-    filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
-    btn.classList.add('is-active');
-    const filter = btn.dataset.filter;
-    grid.querySelectorAll('.gallery-item').forEach(el => {
-      const match = filter === 'all' || el.dataset.category === filter;
-      el.style.display = match ? '' : 'none';
-    });
-  });
-
-  // Lightbox
   const lightbox = document.getElementById('lightbox');
-  const lbImage = document.getElementById('lbImage');
-  const lbTitle = document.getElementById('lbTitle');
-  const lbMeta = document.getElementById('lbMeta');
-  let currentIndex = 0;
+  const lbImg = document.getElementById('lbImg');
+  const lbCaption = document.getElementById('lbCaption');
+  const lbCounter = document.getElementById('lbCounter');
 
-  function currentVisible() {
-    return Array.from(grid.querySelectorAll('.gallery-item'))
-      .filter(el => el.style.display !== 'none')
-      .map(el => parseInt(el.dataset.index, 10));
+  let visibleItems = [];
+  let current = 0;
+
+  function getAllItems() {
+    return Array.from(grid.querySelectorAll('.item'));
   }
 
-  function openLightbox(index) {
-    visibleIndices = currentVisible();
-    currentIndex = visibleIndices.indexOf(index);
-    if (currentIndex === -1) currentIndex = 0;
-    renderLightbox();
+  function getVisibleItems() {
+    return getAllItems().filter(el => el.style.display !== 'none');
+  }
+
+  function openLightbox(el) {
+    visibleItems = getVisibleItems();
+    current = visibleItems.indexOf(el);
+    if (current === -1) current = 0;
+    render();
     lightbox.classList.add('is-open');
     document.body.style.overflow = 'hidden';
   }
 
-  function renderLightbox() {
-    const item = items[visibleIndices[currentIndex]];
-    lbImage.style.setProperty('--ar', item.ar);
-    lbImage.style.setProperty('--c1', item.c1);
-    lbImage.style.setProperty('--c2', item.c2);
-    lbTitle.textContent = item.title;
-    lbMeta.textContent = item.meta;
+  function render() {
+    const el = visibleItems[current];
+    const img = el.querySelector('img');
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCaption.textContent = el.dataset.caption || '';
+    lbCounter.textContent = (current + 1) + ' / ' + visibleItems.length;
   }
 
   function closeLightbox() {
@@ -163,10 +191,26 @@
   }
 
   function step(delta) {
-    if (!visibleIndices.length) return;
-    currentIndex = (currentIndex + delta + visibleIndices.length) % visibleIndices.length;
-    renderLightbox();
+    if (!visibleItems.length) return;
+    current = (current + delta + visibleItems.length) % visibleItems.length;
+    render();
   }
+
+  getAllItems().forEach(el => {
+    el.addEventListener('click', () => openLightbox(el));
+  });
+
+  filterBar.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+    const filter = btn.dataset.filter;
+    getAllItems().forEach(el => {
+      const match = filter === 'all' || el.dataset.category === filter;
+      el.style.display = match ? '' : 'none';
+    });
+  });
 
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
   document.getElementById('lbPrev').addEventListener('click', () => step(-1));
