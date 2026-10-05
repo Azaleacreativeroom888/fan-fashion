@@ -436,6 +436,33 @@ section { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--edge); }
 
 /* ---------- Gallery (gallery.html) ---------- */
 
+.gallery-feature {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--edge) 36px;
+}
+
+.feature-link-box {
+  display: block;
+  text-align: center;
+  padding: 20px 24px;
+  border: 2px solid var(--rose-deep);
+  border-radius: 2px;
+  background: var(--ivory);
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--rose-deep);
+  letter-spacing: 0.04em;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.feature-link-box:hover,
+.feature-link-box:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--sky);
+  background: #FFFDFC;
+}
+
 .filter-bar {
   max-width: var(--max-width);
   margin: 0 auto;
@@ -667,6 +694,149 @@ section { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--edge); }
   .lightbox-prev, .lightbox-next { display: none; }
   .lightbox-inner { max-width: 100%; }
 }
+
+/* ---------- Exhibition reports (report1.html) ---------- */
+
+.report-header {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: clamp(48px, 7vw, 76px) var(--edge) clamp(28px, 4vw, 44px);
+  border-bottom: 1px solid var(--ivory-deep);
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+
+.breadcrumb a { color: var(--ink-soft); transition: color 0.2s ease; }
+.breadcrumb a:hover { color: var(--rose-deep); }
+.breadcrumb span { color: var(--rose-soft); }
+
+.page-eyebrow {
+  display: block;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 14px;
+  letter-spacing: 0.22em;
+  color: var(--sky-deep);
+  margin-bottom: 10px;
+}
+
+.report-header h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(28px, 4vw, 38px);
+  color: var(--rose-deep);
+  letter-spacing: 0.02em;
+  margin: 0 0 10px;
+}
+
+.report-header p { font-size: 14px; color: var(--ink-soft); }
+
+.report-feed {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 60px) var(--edge) clamp(72px, 9vw, 120px);
+}
+
+.report-article {
+  margin-bottom: clamp(48px, 6vw, 72px);
+  padding-bottom: clamp(48px, 6vw, 72px);
+  border-bottom: 1px solid var(--ivory-deep);
+}
+
+.report-article:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.report-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(20px, 3vw, 26px);
+  color: var(--ink);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  margin-bottom: 18px;
+  position: relative;
+  padding-left: 16px;
+}
+
+.report-title::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.25em;
+  width: 3px;
+  height: 1em;
+  background: linear-gradient(to bottom, var(--sky-deep), var(--rose-deep));
+}
+
+.report-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 24px;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+
+.meta-item .meta-icon { font-size: 13px; color: var(--sky-deep); opacity: 0.9; }
+.meta-item strong { color: var(--rose-deep); font-weight: 500; }
+
+.report-body { font-size: 14.5px; color: var(--ink); line-height: 2.1; }
+.report-body p { margin-bottom: 16px; }
+.report-body p:last-child { margin-bottom: 0; }
+.report-body .highlight { color: var(--rose-deep); font-weight: 600; }
+
+.visit-badge {
+  display: inline-block;
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--sky-deep);
+  border: 1px solid var(--sky);
+  padding: 4px 14px;
+  margin-bottom: 20px;
+}
+
+.report-deco {
+  margin: 28px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.report-deco::before,
+.report-deco::after { content: ""; flex: 1; height: 1px; background: var(--ivory-deep); }
+.report-deco span { font-size: 11px; letter-spacing: 0.3em; color: var(--rose-soft); }
+
+.year-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.year-label span {
+  font-family: var(--font-accent);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: var(--sky-deep);
+  white-space: nowrap;
+}
+
+.year-label::after { content: ""; flex: 1; height: 1px; background: var(--ivory-deep); }
 
 /* ---------- About: bio ---------- */
 
